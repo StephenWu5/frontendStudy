@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>h5新元素</title>
+</head>
+
+<body>
+    <!-- video 下source支持不同来源，制定不同视频来源，作兼容性处理 -->
+    <audio controls="controls">
+        <source src="./birds160.mp3" type="audio/mpeg">
+        </source>
+        <source src="./birds160.mp3" type="audio/mpeg">
+        </source>
+    </audio>
+    <!-- 可以插入多个标签 -->
+    <embed src="./birds160.mp3" />
+    <object data="./birds160.mp3" type="application/x-shockwave-flash"></object>
+    <!-- mark标签 -->
+    <mark>mark标签</mark>
+    <!-- 标识进程元素 meter-->
+    <meter id="myMeter" min="0" low="40" high="95" max="100" value="65"></meter>
+    <!-- 表示时间和日期📅 time标签不会做任何渲染-->
+    <time id="myTime" datetime="2014-02-14">情人节</time>
+    <!-- ruby汉字表示法 -->
+    <ruby>汉 <rt>
+        <rp>(</rp>ㄏㄢ'<rp>)</rp>
+        </rt>
+    </ruby>
+    <!-- 适配换行<wbr>和强制换行<br/> -->
+    <p> To learn AJAX, you must be fami<wbr>liar with the XMLHttp<wbr>
+        Request Object. </p>
+    <!-- canvas 画图元素 -->
+    <canvas id="myCanvas" width="200" height="200"></canvas>
+    <!-- 命令按钮： 只有 IE 9 支持 command 标签 -->
+    <command onclick=cut()" label="cut">
+        <!-- details 细节信息 -->
+        <details>
+            <summary>HTML 5</summary>
+            This document teaches you everything you have to learn about HTML 5.
+        </details>
+        <!-- datalist 与 input 输入框配合使用 -->
+        <input id="myCar" list="cars" />
+        <datalist id="cars">
+            <option value="BMW">
+            <option value="Ford">
+            <option value="Volvo">
+        </datalist>
+        <input id="myCar" list="cars1" />
+        <datagrid id="cars1">
+            <option value="BMW">
+            <option value="Ford">
+            <option value="Volvo">
+        </datagrid>
+        <!-- keygen  -->
+        <form action="demo_keygen.asp" method="post">
+            Username: <input type="text" name="usr_name" />
+            Encryption: <keygen name="security" />
+            <input type="submit" />
+        </form>
+        <!-- 可以output实现双向绑定之类、计算器的东西 -->
+        <form action="form_action.asp" method="get" name="sumform"
+            oninput="sum.value=String(Username.value)+''+String(password.value)">
+            Username: <input type="text" name="Username" id="Username" />
+            password: <input type="text" name="password" id="password" />
+            <output name="sum" for="password Username">0</output>
+            <input type="submit" />
+        </form>
+        <!-- 菜单列表 -->
+        <menu>
+            <li><input type="checkbox" />Red5</li>
+            <li><input type="checkbox" />blue5</li>
+        </menu>
+</body>
+
+</html>

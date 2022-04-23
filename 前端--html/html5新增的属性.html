@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/1211" id="myForm" method="post"> 
+        <input type="submit" value="提交">
+        <input type="submit" formaction="/demo-admin.php" value="提交2">
+    </form>
+    <!-- autofocus 自动聚焦 如果是多个autofocus，那就自动聚焦第一个 -->
+    <!-- 必须带上name才能带上参数🐕 -->
+    <input name="name" required type="number" placeholder="提示语" autofocus form="myForm" aotucomplete
+        pattern="/^[0-9]+$/">
+    <textarea name="words" id="" cols="30" rows="10" placeholder="提示语" autofocus form="myForm"></textarea>
+    <input type="search" name="move" list="search">
+    <datalist id="search">
+        <option>新闻</option>
+        <option>娱乐</option>
+        <option>体育</option>
+    </datalist>
+</body>
+
+</html>
