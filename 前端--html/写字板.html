@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+    <script>
+		function onc(event){
+            event.preventDefault()
+			var c=document.forms[0]['text'];
+			var d=c.selectionDirection;
+			console.log(d, c.value, '8888');
+            debugger;
+		}
+	</script>
+	<body>
+		<form>
+			<input type="text"  name="text" value="123456">
+			<input type="submit" value="提交" οnclick="onc(event)">
+		</form>
+	</body>
+	
+	
+</html>

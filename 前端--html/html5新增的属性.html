@@ -13,23 +13,33 @@
     <!-- renderer是为双核浏览器准备的，用于指定双核浏览器默认以何种方式渲染页面。 -->
     <meta name="renderer" content="webkit">
     <!-- 拼接链接 -->
-    <base href="http://www.runoob.com//images/" target="_blank">
+    <!-- <base href="http://www.runoob.com//images/" target="_blank"> -->
     <title>Document</title>
+    <script>
+        // window.checkString = '';
+        checkString = '';
+    </script>
 </head>
 
 <body>
     <form action="/1211" id="myForm" method="post">
         <input type="submit" value="提交">
         <!-- formenctype 的值就是请求中Content-Type的值 -->
-        <input type="submit" formaction="/demo-admin.php" formenctype="text/plain" formtaget="_self" formnovalidate
+        <input type="submit" formaction="/demo-admin.php" formenctype="text/plain1" formtaget="_self" formnovalidate formmethod="post" novalidate
             value="提交2">
     </form>
     <!-- autofocus 自动聚焦 如果是多个autofocus，那就自动聚焦第一个 -->
     <!-- 必须带上name才能带上参数🐕 -->
+   
+    <label for="name">称呼</label>
     <input name="name" required type="number" placeholder="提示语" autofocus form="myForm" aotucomplete
-        pattern="/^[0-9]+$/">
-    <textarea name="words" id="" cols="30" rows="10" placeholder="提示语" autofocus form="myForm"></textarea>
+        pattern="/^[0-9]+$/" id="name">
+    <input name="age" required type="email" placeholder="请输入年龄" autofocus form="myForm" aotucomplete >
+    <input name="address" required type="url" placeholder="请输入网址" autofocus form="myForm" aotucomplete >
+    <input name="time" required type="month" placeholder="请输入时间" autofocus form="myForm" aotucomplete>
+    <textarea name="words" id="" cols="30" rows="10" placeholder="提示语－warp" autofocus form="myForm" selectionDirection="backward" maxlength="30000" warp="physical"></textarea>
     <input type="search" name="move" list="search">
+    <label for="name" form="myForm">称呼</label>
     <datalist id="search">
         <option>新闻</option>
         <option>娱乐</option>
@@ -41,7 +51,7 @@
     <!-- 没有浏览器支持sizes属性 -->
     <link rel="icon" href="./2022-04-24_21-17.png" type="image/png" sizes="16x16">
     <!-- 统一写请求地址 -->
-    <base href="http://www.runoob.com/images/" target="_blank">
+    <!-- <base href="http://www.runoob.com/images/" target="_blank"> -->
     <!-- reversed 倒序处理：序号而已 -->
     <ol reversed>
         <li>老大</li>
@@ -68,18 +78,47 @@
     <!-- 只有 Firefox属性支持 scoped 属性 。 -->
     <div>
         <style type="text/css" scoped>
-            h1 {
+            :scope h1 {
                 color: red;
             }
 
-            p {
+            :scope p {
                 color: blue;
             }
         </style>
         <h1>这个标题是红色的</h1>
         <p>这个段落是蓝色的。</p>
     </div>
-    
+    <div>
+        <style scoped>
+            :scope>div>a:hover {
+                color: red;
+            }
+        </style>
+        <div><a>xxx</a></div>
+    </div>
+    <!-- 只写属性不写属性值代表属性为true-->
+    <input type="checkbox" checked>
+    <!-- 不写属性代表属性为false-->
+    <input type="checkbox">
+    <!-- 属性值= 属性名, 代表属性为true-->
+    <input type="checkbox" checked="checked">
+    <!-- 属性值= 空字符串, 代表属性为true-->
+    <input type="checkbox" checked="">
+    <!-- 属性值= 空字符串, 代表属性为true-->
+    <input type="checkbox" checked="checkString">
+    <!-- 可以省略引号 -->
+    <input type="checkbox" checked=checkString id="checkboxLast"> 
+    <!-- 请注意type 的属性值两边的引号 -->
+    <input type="text">
+    <input type='image' src="./生活中的幸福.png" width="600" height="400">
+    <input type=text>
+    <p> 这段代码是根据HTML 5 语法
+    <p> 这段代码是根据HTML 5 语法
 </body>
 
+<script>
+    // CheckBox的indeterminate是一个独立的属性，和CheckBox的checked、status的取值无关，也就是说它只会影响CheckBox的外观显示
+    document.querySelector('#checkboxLast').indeterminate = false;
+</script>
 </html>
