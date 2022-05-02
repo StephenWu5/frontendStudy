@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>新增的事件</title>
+</head>
+
+<body>
+    <input type="text" oninput="input()">
+    <form action="" onreset="reset()" id="form">
+        <!-- <input type="button" onclick="formReset()" value="Reset form"> -->
+        <!-- 只绑定一次事件 -->
+        <input type="button" id='myButton' value="Reset form">
+    </form>
+</body>
+<script>
+    function reset() {
+        // 不知道为啥这个方法绑定不上去
+        console.log('onreset1111111')
+    }
+    input = () => {
+        console.log('oninput');
+    }
+    formReset = () => {
+        // console.log(document.querySelector('#form'), `document.querySelector('#form')`);
+        document.querySelector('#form').reset();
+    }
+    window.onresize = () => {
+        console.log('onresize');
+    }
+    window.ononline = () => {
+        console.log('online');
+    }
+    window.onoffline = () => {
+        console.log('offline');
+    }
+    window.onpageshow = () => {
+        console.log('onpageshow');
+    }
+    window.onpagehide = () => {
+        console.log('onpagehide');
+    }
+    window.onbeforeprint = () => {
+        console.log('onbeforeprint');
+    }
+    window.onbeforeunload = () => {
+        console.log('onbeforeunload');
+    }
+    window.onhashchange = () => {
+        console.log('onhashchange');
+    }
+    // 只绑定一次事件
+    document.getElementById("myButton").addEventListener("click", function () {
+        console.log("myButton按钮被点击!");
+    }, {
+        once: true
+    });
+</script>
+
+</html>

@@ -1,16 +1,53 @@
 <!DOCTYPE html>
+<html>
+
 <head>
     <meta charset="UTF-8">
     <title>conentEditalbe属性示例</title>
 </head>
+
 <body>
-    <h2>可编辑列表</h2>
-    <ul contentEditable="true">
+    <!-- hidden 元素会创建但是不会渲染 -->
+    <h2 hidden="true">可编辑列表</h2>
+    <ul>
         <li>列表元素1</li>
         <li>列表元素2</li>
         <li>列表元素3</li>
     </ul>
+    <input type="button" value="提交按钮" contentEditable="true" />
+    <div>我是div </div>
+    <!-- spellcheck 语法检查，火狐浏览器支持，谷歌貌似不支持 -->
+    <!--以下两种书写方法正确-->
+    <textarea spellcheck="true"></textarea>
+    <input type='text' spellcheck="true">
+    <p contenteditable="true" spellcheck="true">蒲公英云</p>
+    <!-- tabindex -1 让标签不能被tab到 -->
+    <button type="button" id="button1">tabindex === 1</button>
+    <button type="button" tabindex="9">tabindex === 999</button>
+    <button type="button" tabindex="10">tabindex === 0</button>
+    <!-- // HTML -->
+    <button type="button" onClick="clickBtn()">点击让DIV聚焦</button>
+    <div id="FocusDiv" ref="FocusDiv">这是一个div</div>
 </body>
+<script>
+    function clickBtn() {
+        document.getElementById('FocusDiv').focus();
+    }
+    // 开启全局编辑
+    // document.designMode = 'on';
+    window.onload = () => {
+        document.getElementById('FocusDiv').focus();
+        document.querySelector('#button1').focus();
+    }
+    window.onresize = () => {
+        console.log('onresize');
+    }
+    window.ononline = () => {
+        console.log('online');
+    }
+    window.onoffline = () => {
+        console.log('offline');
+    }
+</script>
 
-
-
+</html>
