@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- article 表示文章博客 -->
+    <article>
+        <header>
+            <h1>苹果</h1>
+            <p>发表日期: <time pubdate="pubdate">2010/10/09</time></p>
+        </header>
+        <p><b>苹果</b> ,植物类水果,多次花果...("苹果"文章正文)</p>
+        <footer>
+            <p><small>著作权归***公司所有。</small></p>
+        </footer>
+    </article>
+    <!-- article 可以相互嵌套 -->
+    <article>
+        <header>
+            <h1>苹果</h1>
+            <p>发表日期:
+                <time pubdate datetime="2010/10/09">2010/10/09</time>
+            </p>
+        </header>
+        <p><b>苹果</b> ,植物类水果,多次花果...("苹果"文章正文)</p>
+        <section>
+            <h2>评论</h2>
+            <article>
+                <header>
+                    <h3>发表者：陆凌牛</h3>
+                    <p>
+                        <time pubdate datetime="2010-10-10T19:10-08:00">
+                            1小时前
+                        </time>
+                    </p>
+                </header>
+                <p>我喜欢苹果,我最喜爱的品种是红富士。</p>
+            </article>
+            <article>
+                <header>
+                    <h3>发表者：张玉</h3>
+                    <p>
+                        <time pubdate datetime="2010-10-10T19:15-08:00">
+                            1小时前
+                        </time>
+                    </p>
+                </header>
+                <p>苹果？我不喜欢,我喜欢吃橘子。</p>
+            </article>
+        </section>
+    </article>
+    <!-- article 表示插件 -->
+    <article>
+        <h1>My Fruit Spinner</h1>
+        <object>
+            <param name="allowFullScreen" value="true">
+            <embed src="#" width="600" height="395"></embed>
+        </object>
+    </article>
+    <!-- section 不建议没有标题的内容使用 -->
+    <!-- section 不要设置样式 那是div的工作 -->
+    <!-- 能用article aside nav , 就不要使用section -->
+    <!-- article有独立性, 看作是特殊的section -->
+    <section>
+        <h1>苹果</h1>
+        <p><b>苹果</b> ,植物类水果,多次花果...("苹果"文章正文)</p>
+    </section>
+
+    <article>
+        <header>
+            <h1>苹果</h1>
+            <p>发表日期: <time pubdate="pubdate">2010/10/09</time></p>
+        </header>
+        <p><b>苹果</b> ,植物类水果,多次花果...("苹果"文章正文)</p>
+        <footer>
+            <p><small>著作权归***公司所有。</small></p>
+        </footer>
+    </article>
+    <article>
+        <header>
+            <h1>苹果</h1>
+            <p>发表日期:
+                <time pubdate datetime="2010/10/09">2010/10/09</time>
+            </p>
+        </header>
+        <p><b>苹果</b> ,植物类水果,多次花果...("苹果"文章正文)</p>
+        <section>
+            <h2>评论</h2>
+            <article>
+                <header>
+                    <h3>发表者：陆凌牛</h3>
+                    <p>
+                        <time pubdate datetime="2010-10-10T19:10-08:00">
+                            1小时前
+                        </time>
+                    </p>
+                </header>
+                <p>我喜欢苹果,我最喜爱的品种是红富士。</p>
+            </article>
+            <article>
+                <header>
+                    <h3>发表者：张玉</h3>
+                    <p>
+                        <time pubdate datetime="2010-10-10T19:15-08:00">
+                            1小时前
+                        </time>
+                    </p>
+                </header>
+                <p>苹果？我不喜欢,我喜欢吃橘子。</p>
+            </article>
+        </section>
+    </article>
+    <article>
+        <h1>My Fruit Spinner</h1>
+        <object>
+            <param name="allowFullScreen" value="true">
+            <embed src="#" width="600" height="395"></embed>
+        </object>
+    </article>
+    <section>
+        <h1>苹果</h1>
+        <p><b>苹果</b> ,植物类水果,多次花果...("苹果"文章正文)</p>
+    </section>
+    <article>
+        <h1>苹果</h1>
+        <p><b>苹果</b> ,植物类水果,多次花果...</p>
+        <section>
+            <h2>红富士</h2>
+            <p>红富士是从普通富士的芽(枝)变中选育出的着色系富的统称...</p>
+        </section>
+        <section>
+            <h2>国光</h2>
+            <p>国光苹果品,又名小国光、万寿。原产美国,1600年发现的偶然实生苗...</p>
+        </section>
+    </article>
+    <section>
+        <h1>水果</h1>
+        <article>
+            <h2>苹果</h2>
+            <p>苹果,植物类水果,多次花果...</p>
+        </article>
+        <article>
+            <h2>橘子</h2>
+            <p>橘子,是芸香科柑橘属的一种水果...</p>
+        </article>
+        <article>
+            <h2>香蕉</h2>
+            <p>香蕉,属于芭蕉科芭蕉属植物,又指其果实,热带地区广泛栽培食用...</p>
+        </article>
+    </section>
+    <!-- nav 导航的链接组 -->
+    <h1>技术资料</h1>
+    <nav>
+        <ul>
+            <li><a href="/">主页</a></li>
+            <li><a href="/events">开发文档</a></li>
+            ...more...
+        </ul>
+    </nav>
+    <article>
+        <header>
+            <h1>HTML 5与CSS 3的历史</h1>
+            <nav>
+                <ul>
+                    <li><a href="#HTML5">HTML 5的历史</a></li>
+                    <li><a href="#CSS3">CSS 3的历史</a></li>
+                    ...more...
+                </ul>
+            </nav>
+        </header>
+        <section id="HTML 5">
+            <h1>HTML 5的历史</h1>
+            <p>讲述HTML 5的历史的正文</p>
+        </section>
+        <section id="CSS 3">
+            <h1>CSS 3的历史</h1>
+            <p>讲述CSS 3的历史的正文</p>
+        </section>
+        ...more...
+        <footer>
+            <p>
+                <a href="?edit">编辑</a> |
+                <a href="?delete">删除</a> |
+                <a href="?rename">重命名</a>
+            </p>
+        </footer>
+    </article>
+    <footer>
+        <p><small>版权所有：陆凌牛</small></p>
+    </footer>
+    <article>
+        <h1>第四节 词法闭包</h1>
+        <p>lambda表达式可以创建词法闭包...(文章正文)</p>
+        <aside>
+            <!-- 因为这个aside元素被放置在一个article元素内部,
+            所以分析器将这个aside元素的内容理解成是和article元素的内容相关联的。 -->
+            <h1>名词解释</h1>
+            <dl>
+                <dt>F#</dt>
+                <dd>F#为.Net2010中引入的新型函数型编程语言</dd>
+            </dl>
+            <dl>
+                <dt>词法闭包</dt>
+                <dd>词法闭包是指,将创建lambda表达式时的环境保存起来...(详细解释)</dd>
+            </dl>
+        </aside>
+    </article>
+    <!-- aside 写评论内容，广告等等 -->
+    <aside>
+        <nav>
+            <h2>评论</h2>
+            <ul>
+                <li>
+                    <a href="http:// blog.sina.com.cn/1683">erway</a> 10-24 14:25
+                </li>
+                <li>
+                    <a href="http:// blog.sina.com.cn/u/1345">太阳雨</a> 10-22 23:48<br />
+                    <a href="http:// blog.sina.com.cn/s/blog_6a9kv8f.html#comment">
+                        顶,拜读一下老牛的文章
+                    </a>
+                </li>
+                <li>
+                    <a href="http:// blog.sina.com.cn/u/1259295385">新浪官博</a>
+                    08-12 08:50<br />
+                    <a href="#">恭喜！您已经成功开通了博客</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- time 是微格式的一种 -->
+    <!-- pubdate 发布时间 -->
+    <time datetime="2010-11-13" pubdate>2010年11月13日</time>
+    <!-- header: 每个页面不只一个header, 或者每个内容区一个header -->
+    <!-- header: logo、导航条 -->
+    <!-- header: 没有标题元素不能生成大纲 -->
+    <header>
+        <h1> 页面标题</h1>
+    </header>
+    <header>
+        <h1>网页标题</h1>
+    </header>
+    <article>
+        <header>
+            <h1>文章标题</h1>
+        </header>
+        <p>文章正文</p>
+    </article>
+    <!-- footer: 每个页面不只一个footer, 或者每个内容区article 、section一个footer -->
+    <!-- footer: 版权，联系方式，地址 -->
+    <!-- footer: 没有标题元素不能生成大纲 -->
+    <article>
+        文章内容
+        <footer>
+            文章的脚注
+        </footer>
+    </article>
+    <section>
+        分段内容
+        <footer>
+            分段内容的脚注
+        </footer>
+    </section>
+    <!-- address: 版权，联系方式，地址。 与footer配合使用 -->
+    <address>
+        <a href=http:// blog.sina.com.cn/itnewtech>陆凌牛</a>
+        <a href=http:// blog.sina.com.cn/zhangyu>张玉</a>
+        <a href=http:// blog.sina.com.cn/baiquanli>白权立</a>
+    </address>
+    <footer>
+        <div>
+            <address>
+                <a title="文章作者：陆凌牛" href="http:// blog.sina.com.cn/itnewtech">陆凌牛</a>
+            </address>
+            发表于<time datetime="2010-10-04">2010年10月4日</time>
+        </div>
+    </footer>
+    <!-- main: 包含特有的内容，不能包含公共的内容。main标签不能在footer、header、aside,section,article之内 -->
+    <main></main>
+    <!-- 一个完整的例子 -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="courses.html">课程</a></li>
+                <li><a href="fees.html">学费</a></li>
+                <li><a>毕业</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>毕业</h1>
+        <nav>
+            <h1>
+                <ul>
+                    <li><a href="#ceremony">典礼</a></li>
+                    <li><a href="#graduates">毕业生</a></li>
+                    <li><a href="#awards">表彰</a></li>
+                </ul>
+            </h1>
+        </nav>
+
+        <H2>典礼</H2>
+        <p>入场仪式</p>
+        <p>毕业生代表发言</p>
+        <p>学生会主席发言</p>
+        <p>颁发毕业证书</p>
+        <p>校长总结发言</p>
+
+        <h2 id="graduates">毕业生</h2>
+        <ul>
+            <li>Eileen Williams</li>
+            <li>Andy Maseyk</li>
+            <li>Blanca Sainz Garcia</li>
+            <li>Clara Faulkner</li>
+            <li>Gez Lemon</li>
+            <li>Eloisa Faulkner</li>
+        </ul>
+
+        <h2>表彰</h2>
+        <ul>
+            <li>Clara Faulkner</li>
+            <li>Eloisa Faulkner</li>
+            <li>Blanca Sainz Garcia</li>
+        </ul>
+    </main>
+    <footer> Copyright 2012 常州市玉凌软件</footer>
+    <!-- 1. 显 式 编 排 内 容 区 块
+    显 式 编 排 是 指 明 确 使 用 section 等 元 素 创 建 文 档 结 构 , 在 每 个 内 容 区 块 内 容使 用 标 题 (h1 一 h6) , 如 代 码 清 单 3-25 所 示 。 -->
+    <h1>网页级内容区块标题</h1>
+    <p>网页级内容区块的正文</p>
+    <section>
+        <h2>section级内容区块的标题</h2>
+        <p>section级内容区块的正文</p>
+    </section>
+    <!-- 2. 隐式就是不写 section , 自动根据 h1 ～ h6 写。 -->
+    <body>
+        <h1>网页级内容区块标题</h1>
+        <p>网页级内容区块的正文</p>
+        <!--分析器根据h2等元素判断生成内容区块-->
+        <h2>section级内容区块的标题</h2>
+        <p>section级内容区块的正文</p>
+    </body>
+    <!-- 标题分级 -->
+    <section>
+        <h2>section级别的内容区块的标题</h2>
+        <p>section级别的内容区块的正文</p>
+        <!-- 因为下面的标题级别比上一个标题级别高,所以自动创建新的内容区块 --->
+        <h1>新的section级别的内容区块的标题</h1>
+        <p>新的section级别的内容区块的正文</p>
+    </section>
+    <!-- 显式放假 -->
+    <section>
+        <h2>section级别的内容区块的标题</h2>
+        <p>section级别的内容区块的正文</p>
+    </section>
+    <section>
+        <h1>新的section级别的内容区块的标题</h1>
+        <p>新的section级别的内容区块的正文</p>
+    </section>
+    
+</body>
+
+</html>

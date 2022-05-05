@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<head>
+    <title>labels属性的使用示例</title>
+    <meta charset="UTF-8">
+</head>
+<script type="text/javascript">
+    function Validate() {
+        var txtName = document.getElementById("txt_name");
+        var button = document.getElementById("btnValidate");
+        var form = document.getElementById("testform");
+        if (txtName.value.trim() == "") {
+            // 一个input 输入框可以关联多个 label
+            console.log(txtName.labels, 'txtName.labels');
+            if (txtName.labels.length == 1) {
+                var label = document.createElement("label");
+                label.setAttribute("for", "txt_name");
+                form.insertBefore(label, button);
+                txtName.labels[1].innerHTML = "请输入姓名";
+                txtName.labels[1].setAttribute(
+                    "style", "font-size:9px;color:red");
+            }
+        }
+        else if (txtName.labels.length > 1)
+            form.removeChild(txtName.labels[1]);
+    }
+</script>
+<form id="testform">
+    <label id="label" for="txt_name">姓名:</label>
+    <input id="txt_name">
+    <input id="btnValidate" type="button" value="验证" onclick="Validate()" />
+</form>
+<form>
+    <label id="label2">
+        邮编:
+        <input id="txt_zip" maxlength="6">
+        <small>请输入六位数字</small>
+    </label>
+    <input type="button" value="设置默认值" onclick="setValue()" />
+</form>
+text：<input type="text" name="greeting" list="greetings" autocomplete="on">
+<!--使用style="display:none;"将datalist元素设定为不显示-->
+<datalist id="greetings" style="display: none;">
+    <option value="Good Morning">Good Morning</option>
+    <option value="Hello">Hello</option>
+    <option value="Good Afternoon">Good Afternoon</option>
+</datalist>
+<input type="checkbox" id="checkboxLast" indeterminate>indeterminate属性测试
+<h2> 表格1 </h2>
+<form action="test.php" method="post" id="myform">
+    <textarea name="name" maxlength=100 rows=5 wrap="soft" cols=5></textarea>
+    <input name="email1" type="email" value="240824399@qq.com" multiple>
+    <input name="week1" type="week" value="2010-W40">
+    <!-- step 以今天为日期，从前往后的推 -->
+    <input type="date" name="date" step="1" value="2022-08-22">
+    <input name="number1" id="number1" type="number" value="25" min="10" max="100" step="5">
+    <input name="range1" type="range" value="25" min="0" max="100" step="5">
+    <input name="color1" type="color">
+    <input type="search" name="search" id="search">
+    <input type="submit" value="提交" />
+</form>
+<h2> 表格2 </h2>
+<form name="form1">
+    <label for=username>姓名</label>
+    <input name=username id=username type=text required /><br />
+    <label for=age>年龄</label>
+    <input name=age id=age type=number min=0 max=100 /><br />
+    <label for=birthday>出生日期</label>
+    <input name=birthday id=birthday type=date /><br />
+    <label for=email>Email</label>
+    <input name=email id=email type=email required /><br />
+    <label for=url>个人主页</label>
+    <input name=url id=url type=url /><br />
+    <label for=memo>个人简介</label>
+    <textarea name=memo id=memo required></textarea><br />
+    <input type=submit>
+</form>
+<script type="text/javascript">
+    function setValue() {
+        var label = document.getElementById("label2");
+        var textbox = label.control;
+        textbox.value = "213001";
+    }
+    // 一般取input的值是字符串，valueAsNumber就是数字
+    var number1 = document.getElementById("number1").valueAsNumber;
+    console.log(number1, 'number1');
+    // js 操作日期📅
+    document.querySelector('#myform').date.stepUp(5);
+    // CheckBox的indeterminate是一个独立的属性，和CheckBox的checked、status的取值无关，也就是说它只会影响CheckBox的外观显示
+    // document.querySelector('#checkboxLast').indeterminate = true;
+</script>
+<h3>用于术语解释的dl列表示例</h3>
+<article>
+    <h1>aritcle元素</h1>
+    <p>一块独立的内容。它可以用来表示RRS中一块独立的内容,也可以用来表示博客中独立的一
+        篇文章。...</p>
+    <aside>
+        <h2>术语解释</h2>
+        <dl>
+            <dt><dfn>RSS</dfn></dt>
+            <dd>RSS也叫聚合RSS是在线共享内容的一种简易方式(也叫聚合内容)...</dd>
+            <dt><dfn>博客</dfn></dt>
+            <dd>博客,又译为网络日志、部落格或部落阁等,是一种通常由个人管理...</dd>
+        </dl>
+    </aside>
+</article>
+<dl>
+    <dt>作者</dt>
+    <dd>陆凌牛</dd>
+    <dt>出版社</dt>
+    <dd>机械工业出版社</dd>
+    <dt>类别</dt>
+    <dd>网络开发</dd>
+</dl>
+<h3>cite元素示例</h3>
+<p>我最喜欢的电影是由甄子丹主演的<cite>精武风云</cite>。</p>
+<small>small 标签</small>
