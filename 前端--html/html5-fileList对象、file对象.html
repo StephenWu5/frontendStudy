@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script language=javascript>
+        function ShowFileName() {
+            var file;
+            // document.getElementById("file").files返回FileList文件列表对象
+            for (var i = 0; i < document.getElementById("file").files.length; i++) {
+                // file对象为用户选择的单个文件
+                file = document.getElementById("file").files[i];
+                // 此处您可以针对FileList文件列表中每个文件进行多种处理，本例中只弹出文件名
+                console.log(file, 'file');
+            }
+        }
+    </script>
+    选择文件：
+    <input type="file" id="file" multiple size="80" />
+    <input type="button" onclick="ShowFileName();" value="文件上传" />
+</body>
+
+</html>
