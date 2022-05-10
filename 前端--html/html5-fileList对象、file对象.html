@@ -24,6 +24,26 @@
     选择文件：
     <input type="file" id="file" multiple size="80" />
     <input type="button" onclick="ShowFileName();" value="文件上传" />
+    <br/>
 </body>
+<script language=javascript>
+    function ShowFileType() {
+        var file;
+        // 得到用户选择的第一个文件
+        file = document.getElementById("file1").files[0];
+        console.log(file, 'file');
+        var size = document.getElementById("size1");
+        // 显示文件字节长度
+        size.innerHTML = file.size;
+        var type = document.getElementById("type1");
+        // 显示文件类型
+        type.innerHTML = file.type;
+    }
+</script>
+选择文件：
+<input type="file" id="file1" />
+<input type="button" value="显示文件信息" onclick="ShowFileType();" /><br />
+文件字节长度:<span id="size1"></span><br />
+文件类型：<span id="type1"></span>
 
 </html>
