@@ -2,36 +2,41 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
 
 <body>
-    <script language=javascript>
+    <script language="javascript">
         function ShowFileName() {
             var file;
             // document.getElementById("file").files返回FileList文件列表对象
-            for (var i = 0; i < document.getElementById("file").files.length; i++) {
+            for (
+                var i = 0;
+                i < document.getElementById("file").files.length;
+                i++
+            ) {
                 // file对象为用户选择的单个文件
                 file = document.getElementById("file").files[i];
                 // 此处您可以针对FileList文件列表中每个文件进行多种处理，本例中只弹出文件名
-                console.log(file, 'file');
+                console.log(file, "file");
             }
         }
     </script>
     选择文件：
     <input type="file" id="file" multiple size="80" />
     <input type="button" onclick="ShowFileName();" value="文件上传" />
-    <br/>
+    <br />
 </body>
-<script language=javascript>
+<script language="javascript">
+    // 文件部分2
     function ShowFileType() {
         var file;
         // 得到用户选择的第一个文件
         file = document.getElementById("file1").files[0];
-        console.log(file, 'file');
+        console.log(file, "file");
         var size = document.getElementById("size1");
         // 显示文件字节长度
         size.innerHTML = file.size;
@@ -45,5 +50,52 @@
 <input type="button" value="显示文件信息" onclick="ShowFileType();" /><br />
 文件字节长度:<span id="size1"></span><br />
 文件类型：<span id="type1"></span>
+
+<script language="javascript">
+    function FileUpload() {
+        var file;
+        for (
+            var i = 0;
+            i < document.getElementById("file2").files.length;
+            i++
+        ) {
+            file = document.getElementById("file2").files[i];
+            if (!/image\/\w+/.test(file.type)) {
+                alert(file.name + "不是图像文件！");
+                break;
+            } else {
+                // 此处可加入文件上传的代码
+                alert(file.name + "文件已上传");
+            }
+        }
+    }
+</script>
+选择文件：
+<!-- accept="image/*" 是个弱提示，没有强制的意识 -->
+<input type="file" id="file2" multiple accept="image/*" />
+<input type="button" value="文件上传" onclick="FileUpload();" />
+
+<script>
+    // 创建及下载二进制文件
+    function Blob_test() {
+        var text = document.getElementById("text").value;
+        var blob;
+        var result = document.getElementById("result");
+        // 创建Blob对象
+        if (!window.Blob)
+            result.innerHTML = "您的浏览器不支持使用Blbo对象。";
+        else
+            blob = new Blob([text]);// Blob中数据为文字时默认使用utf8格式
+        // 通过createObjectURL方法创建文字链接
+        if (window.URL) {
+            result.innerHTML = '<a download href = "' +window.URL.createObjectURL(blob) +'" target="_blank">文件下载</a>';
+        }
+    }
+    console.log(window.URL.createObjectURL(new Blob(['777'])), 'url');
+</script>
+    <textarea id="text" placeholder="请输入一些文字"></textarea><br />
+    <button onclick="Blob_test()">创建及下载二进制文件
+    </button>
+    <output id="result"></output>
 
 </html>
