@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>根据数据记录的主键值检索数据</title>
+    <script>
+        window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
+            window.mozIndexedDB || window.msIndexedDB;
+        window.IDBTransaction = window.IDBTransaction ||
+            window.webkitIDBTransaction || window.msIDBTransaction;
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange ||
+            window.msIDBKeyRange;
+        window.IDBCursor = window.IDBCursor || window.webkitIDBCursor ||
+            window.msIDBCursor;
+        const dbName = 'indexedDBTest'; //数据库名
+        const dbVersion = 20180410; //版本号
+        let idb;
+        function window_onload() {
+            document.getElementById("btnSaveData").disabled = true;
+            document.getElementById("btnSearchData").disabled = true;
+        }
+        function ConnectDataBase() {
+            /*连接数据库，dbConnect对象为一个IDBOpenDBRequest对象，代表数据库连接
+            的请求对象*/
+            let dbConnect = indexedDB.open(dbName, dbVersion);
+            dbConnect.onsuccess = function (e) {//连接成功
+                idb = e.target.result; //引用IDBDatabase对象
+                alert('数据库连接成功');
+                document.getElementById("btnSaveData").disabled = false;
+            };
+            dbConnect.onerror = function () {
+                alert('数据库连接失败');
+            };
+        }
+        function SaveData() {
+            //开启事务
+            let tx = idb.transaction(['Users2'], 'readwrite');
+            tx.oncomplete = function () { alert('保存数据成功'); }
+            document.getElementById("btnSearchData").disabled = false;
+            tx.onabort = function () { alert('保存数据失败'); }
+            let store = tx.objectStore('Users2');
+            let value = {
+                userId: 1,
+                userName: '张三',
+                address: '住址1'
+            };
+            store.put(value);
+            value = {
+                userId: 2,
+                userName: '李四',
+                address: '住址2'
+            };
+            store.put(value);
+            value = {
+                userId: 3,
+                userName: '王五',
+                address: '住址3'
+            };
+            store.put(value);
+            value = {
+                userId: 4,
+                userName: '赵六',
+                address: '住址4'
+            };
+            store.put(value);
+        }
+        function SearchData() {
+            let tx = idb.transaction(['Users2'], 'readonly');
+            let store = tx.objectStore('Users2');
+            let range = IDBKeyRange.bound(1, 4);
+            let direction = 'next';
+            let req = store.openCursor(range, direction);
+            req.onsuccess = function () {
+                let cursor = this.result;
+                if (cursor) {
+                    console.log('检索到一条数据，用户名为' + cursor.value.userName);
+                    cursor.continue(); //继续检索
+                } else {
+                    console.log('检索结束');
+                }
+            }
+            req.onerror = function () {
+                console.log('检索数据失败');
+            }
+        }
+        function DeleteData() {
+            //开启事务
+            let tx = idb.transaction(['Users2'], 'readwrite');
+            tx.oncomplete = function () { alert('删除数据成功'); }
+            tx.onabort = function () { alert('删除数据失败'); }
+            let store = tx.objectStore('Users2');
+            store.delete(1);
+        }
+    </script>
+</head>
+
+<body onload="window_onload()">
+    <!-- 使用火狐浏览器跑这个demo, 谷歌下有问题 -->
+    <input type="button"  value="连接数据库" onclick="ConnectDataBase();" />
+    <input type="button" id="btnSaveData" value="保存数据" onclick="SaveData();" />
+    <input type="button" id="btnSearchData" value="检索数据" onclick="SearchData();" />
+    <input type="button" id="btnDeleteData" value="删除数据" onclick="DeleteData();" />
+</body>
+
+</html>

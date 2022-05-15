@@ -7,27 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
+<script language="javascript">
+    function ShowFileName() {
+        var file;
+        // document.getElementById("file").files返回FileList文件列表对象
+        for (
+            var i = 0;
+            i < document.getElementById("file").files.length;
+            i++
+        ) {
+            // file对象为用户选择的单个文件
+            file = document.getElementById("file").files[i];
+            // 此处您可以针对FileList文件列表中每个文件进行多种处理，本例中只弹出文件名
+            // console.log(file, "file");
+        }
+
+        var file = document.getElementById('file').files[0];
+        console.log(file, 'file');
+        if (file) {
+            var fileClone = file.slice();         // 复制file对象
+            var fileClone2 = file.slice(0, file.size);      // 复制file对象
+            // 复制file对象的后半部分
+            var fileChunkFromEnd = file.slice(-(Math.round(file.size / 2)));
+            // 复制file对象的前半部分
+            var fileChunkFromStart = file.slice(0, Math.round(file.size / 2));
+            // 复制file对象，从开始处复制到结束处之前的150个字节处，并设置MIME类型
+            var fileNoMetadata = file.slice(0, -150, "application/experimental");
+            console.log(fileChunkFromStart, fileChunkFromEnd,fileNoMetadata, 'fileNoMetadata');
+        }
+    }
+</script>
 
 <body>
-    <script language="javascript">
-        function ShowFileName() {
-            var file;
-            // document.getElementById("file").files返回FileList文件列表对象
-            for (
-                var i = 0;
-                i < document.getElementById("file").files.length;
-                i++
-            ) {
-                // file对象为用户选择的单个文件
-                file = document.getElementById("file").files[i];
-                // 此处您可以针对FileList文件列表中每个文件进行多种处理，本例中只弹出文件名
-                console.log(file, "file");
-            }
-        }
-    </script>
+
     选择文件：
     <input type="file" id="file" multiple size="80" />
-    <input type="button" onclick="ShowFileName();" value="文件上传" />
+    <input type="button" onclick="ShowFileName();" value="文件上传哈哈🦐" />
     <br />
 </body>
 <script language="javascript">
@@ -86,16 +101,19 @@
             result.innerHTML = "您的浏览器不支持使用Blbo对象。";
         else
             blob = new Blob([text]);// Blob中数据为文字时默认使用utf8格式
+        console.log(blob.slice(1, 2, 'application/experimental'), 'blob');
         // 通过createObjectURL方法创建文字链接
         if (window.URL) {
-            result.innerHTML = '<a download href = "' +window.URL.createObjectURL(blob) +'" target="_blank">文件下载</a>';
+            result.innerHTML = '<a download href = "' + window.URL.createObjectURL(blob) + '" target="_blank">文件下载</a>';
         }
     }
     console.log(window.URL.createObjectURL(new Blob(['777'])), 'url');
+
+    }
 </script>
-    <textarea id="text" placeholder="请输入一些文字"></textarea><br />
-    <button onclick="Blob_test()">创建及下载二进制文件
-    </button>
-    <output id="result"></output>
+<textarea id="text" placeholder="请输入一些文字"></textarea><br />
+<button onclick="Blob_test()">创建及下载二进制文件
+</button>
+<output id="result"></output>
 
 </html>
