@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>XMLHttpRequest的使用代码示例</title>
+</head>
+
+<body>
+</body>
+<script>
+    function reqListener() {
+        console.log(this, 'this');
+        let data = JSON.parse(this.responseText);
+        for (let c of data) {
+            document.body.innerHTML += "班级ID:" + c.id + "   班级名称:" + c.name + "   班级人数: "+c.studentCount;
+            for (let student of c.students) {
+                document.body.innerHTML += "<br/>学号:" + student.number + "   学生姓名: "+student.name+"   学生年龄: "+student.age+"   学生联系电话: "+student.phone;
+            }
+            document.body.innerHTML += "<br/>";
+        }
+    }
+    function reqError(err) {
+        alert("Fetch错误:" + err);
+    }
+    var oReq = new XMLHttpRequest();
+    oReq.onload = reqListener;
+    oReq.onerror = reqError;
+    oReq.open("get", "./students.json", true);
+    oReq.send();
+</script>
+
+</html>

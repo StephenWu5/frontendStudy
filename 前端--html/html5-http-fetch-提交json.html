@@ -1,0 +1,30 @@
+<script>
+    let person = {
+        name: '陆凌牛',
+        age: 40
+    }
+    // fetch 不支持中文请求路径
+    fetch('./test-fetch-submitjson.php', {
+        method: "post",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(person)
+    })
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return Promise.resolve(response);
+            }
+            else {
+                return Promise.reject(new Error(response.statusText));
+            }
+        })
+        .then((response) => {
+            response.text().then((data) => {
+                document.body.innerHTML = "请求成功，响应数据为:" + data;
+            });
+        })
+        .catch((err) => {
+            console.log("Fetch错误:" + err);
+        });
+</script>

@@ -1,0 +1,65 @@
+<html><script id="allow-copy_script">(function agent() {
+    let unlock = false
+    document.addEventListener('allow_copy', (event) => {
+      unlock = event.detail.unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = (e) => {
+      if (unlock) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach((evt) => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()</script><head>
+    <meta charset="utf-8">
+    <title>使用fetch方法向服务器端发送Blob对象</title>
+    <script>
+        window.URL = window.URL || window.webkitURL;
+        //复制当前页面
+        function uploadDocument() {
+            let bb = new Blob([document.documentElement.outerHTML]);
+            fetch('./test-发送blob数据.php?fileName=' + getFileName(), {
+                method: 'POST',
+                body: bb
+            })
+                .then(response => response.text())
+                .catch(error => console.error('Error:', error))
+                .then(response => document.getElementById("result").innerHTML =
+                    "文件已上传");
+        }
+        //获取当前页面文件的文件名
+        function getFileName() {
+            let url = window.location.href;
+            let pos = url.lastIndexOf("\\");
+            if (pos == -1)     //pos==-1表示为本地文件
+                pos = url.lastIndexOf("/");   //本地文件路径分割符为"/"
+            let fileName = url.substring(pos + 1);   //从url中获得文件名
+            return fileName;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>使用fetch方法向服务器端发送Blob对象</h1>
+    <input type="button" value="复制页面文件" onclick="uploadDocument()"><br>
+    <output id="result">
+
+
+</output></body></html>
