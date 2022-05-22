@@ -8,7 +8,7 @@
 <body>
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("./html5-serverWorker/html5-serviceWorker-sw.js", { scope: '/fe--html/html5-serverWorker/'}).then(function (registration) {
+            navigator.serviceWorker.register("./html5-serviceWorker-sw-out.js?" + new Date().getTime()).then(function (registration) {
                 //注册成功
                 console.log("Service Worker注册成功，作用范围为：" + registration.scope);
             }).catch(function (err) {
