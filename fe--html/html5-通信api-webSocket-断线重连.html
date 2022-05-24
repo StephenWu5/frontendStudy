@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button onclick="disconnect();">断开连接</button>
+</body>
+
+<script>
+    //1.创建websocket客户端
+    var wsServer = 'ws://localhost:3000/socket';
+    var limitConnect = 3;  // 断线重连次数
+    var timeConnect = 0;
+    webSocketInit(wsServer);
+
+    //socket初始化
+    function webSocketInit(service) {
+        ws = new WebSocket(service);
+        ws.onopen = function () {
+            console.log("已连接TCP服务器");
+        };
+        ws.onmessage = function (msg) {
+            console.log(msg);
+        };
+        ws.onclose = function () {
+            console.log('服务器已经断开');
+            reconnect(service);
+        };
+        ws.onerror = function () {
+            console.log('服务器已经断开');
+            reconnect(service);
+        };
+    }
+
+    // 重连
+    function reconnect(service) {
+        // lockReconnect加锁，防止onclose、onerror两次重连
+        if (limitConnect > 0) {
+            if (localStorage.getItem('lockReconnect') != true) {
+                localStorage.setItem("lockReconnect", 1);
+                // 其实这个写法就是无限次数
+                limitConnect--;
+                timeConnect++;
+                console.log("第" + timeConnect + "次重连");
+                // 进行重连
+                setTimeout(function () {
+                    webSocketInit(service);
+                    localStorage.removeItem("lockReconnect");
+                }, 2000);
+            }
+
+        } else {
+            console.log("TCP连接已超时");
+        }
+    }
+
+    // 心跳 * 回应
+    setInterval(function () {
+        ws.send('');
+    }, 1000 * 100);
+
+    function disconnect() {
+        console.log(ws, 'ws');
+        ws.close();
+    }
+
+</script>
+
+</html>

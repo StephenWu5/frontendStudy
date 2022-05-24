@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>通道通信示例</title>
+    <script type="text/javascript">
+        function window_onload() {
+            var iframes, messageHandler;
+
+            iframes = window.frames;
+
+            // 定义接收到消息时的事件处理函数中的内容
+            messageHandler = function (messageEvent) {
+                if (messageEvent.ports.length > 0) {
+                    // 将端口转发给第二个iframe元素中的页面
+                    iframes[1].postMessage(messageEvent.data,
+                        'http://127.0.0.1:5500/fe--html/html5-%E9%80%9A%E4%BF%A1api-MessageChannel-%E6%AC%A1%E7%A8%8B%E5%BA%8F2.html',
+                        messageEvent.ports);
+                }
+            }
+
+            // 开始对第一个iframe元素中的页面进行监听
+            window.addEventListener('message', messageHandler, false);
+        }
+    </script>
+</head>
+
+<body onload="window_onload()">
+    <h1>通道通信示例</h1>
+    <iframe style="display:none" src="http://127.0.0.1:5500/fe--html/html5-%E9%80%9A%E4%BF%A1api-MessageChannel-%E6%AC%A1%E7%A8%8B%E5%BA%8F1.html">
+    </iframe>
+    <iframe style="display:none" src="http://127.0.0.1:5500/fe--html/html5-%E9%80%9A%E4%BF%A1api-MessageChannel-%E6%AC%A1%E7%A8%8B%E5%BA%8F2.html">
+    </iframe>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>通道通信示例-子页面1</title>
+    <script type="text/javascript">
+        function window_onload() {
+            var mc, portMessageHandler;
+            mc = new MessageChannel();
+
+            // 向父页面发送端口及消息
+            window.parent.postMessage('子页面1已加载完毕',
+                'http://127.0.0.1:5500/fe--html/html5-%E9%80%9A%E4%BF%A1api-MessageChannel-%E4%B8%BB%E7%A8%8B%E5%BA%8F.html', [mc.port2]);
+
+            // 定义本页面中端口接收到消息时的事件处理函数中的内容
+            portMessageHandler = function (portMsgEvent) {
+                alert(portMsgEvent.data+'666');
+            }
+
+            // 定义本页面中端口接收到消息时的事件处理函数
+            mc.port1.addEventListener('message', portMessageHandler, false);
+
+            // 打开本页面中的端口,开始监听
+            mc.port1.start();
+        }
+    </script>
+</head>
+
+<body onload="window_onload()">
+</body>
+
+</html>

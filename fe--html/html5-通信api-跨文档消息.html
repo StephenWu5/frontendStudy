@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>跨域通信示例</title>
+    <script type="text/javascript">
+        // (1) 监听message事件
+        window.addEventListener("message", function (ev) {
+            // (2) 忽略指定URL地址之外的页面传过来的消息
+            // if (ev.origin != "http:// www.blue-butterfly.net") {
+            //     return;
+            // }
+            // (3) 显示消息
+            alert("从" + ev.origin + "那里传过来的消息:\n\"" + ev.data + "\"");
+        }, false);
+        function hello() {
+            var iframe = window.frames[0];
+            console.log(iframe, 'iframe');
+            // iframe = JSON.parse(JSON.stringify(iframe));
+            // (4) 传递消息
+            iframe.postMessage("你好", "http://127.0.0.1:5500/fe--html/html5-%E9%80%9A%E4%BF%A1api-%E8%B7%A8%E6%96%87%E6%A1%A3%E6%B6%88%E6%81%AF-iframe.html");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>跨域通信示例</h1>
+    <iframe width="400"
+        src='http://127.0.0.1:5500/fe--html/html5-%E9%80%9A%E4%BF%A1api-%E8%B7%A8%E6%96%87%E6%A1%A3%E6%B6%88%E6%81%AF-iframe.html'
+        onload="hello()">
+    </iframe>
+</body>
+
+</html>
