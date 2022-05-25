@@ -20,6 +20,8 @@
                 message.innerHTML += "<p>Socket状态："
                     + readyState[webSocket.readyState] + "</p>";
             }
+            // 指定数据类型
+            // websocket.binaryType = 'arraybuffer';
             webSocket.onmessage = function (msg) {
                 message.innerHTML += "<p>接收信息：" + msg.data + "</p>";
             }
@@ -33,7 +35,20 @@
         }
     }
     function send() {
+        // 发送字符串
         var text = document.getElementById("text").value;
+        // 发送对象
+        var object = [{ name: 'name' }];
+        // 发送二进制数据
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var img = ctx.getImageData(0, 0, 400, 320);
+        var binary = new Uint8Array(img.data.length);
+        for (var i = 0; i < img.data.length; i++) {
+            binary[i] = img.data[i];
+        }
+        // 发送file文件
+        var file = document.getElementById('file1').files[0];
         var message = document.getElementById("message");
         if (text == "") {
             message.innerHTML += "<p>请输入一些文字</p>";
@@ -41,16 +56,21 @@
         }
         try {
             webSocket.send(text);
+            //webSocket.send(JSON.stringify(object));
+            console.log(binary.buffer, 'buffer');
+            //webSocket.send(binary.buffer);
+            //webSocket.send(file);
             message.innerHTML += "<p>发送数据：" + text + "</p>";
         }
         catch (exception) {
+            console.log(exception, 'exception');
             message.innerHTML += "<p>发送数据出错</p>";
         }
         document.getElementById("text").value = "";
     }
 
 
-    
+
 
     function disconnect() {
         webSocket.close();
@@ -65,6 +85,10 @@
     <button onclick="connect();">建立连接</button>
     <button id="send" onclick="send();">发送数据</button>
     <button onclick="disconnect();">断开连接</button>
+    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+        您的浏览器不支持 HTML5 canvas 标签。
+    </canvas>
+    <input type="file" id="file1">
 </body>
 
 </html>

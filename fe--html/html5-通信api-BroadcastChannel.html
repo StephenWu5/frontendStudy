@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>BroadcastChannel API使用示例</title>
+</head>
+
+<body>
+    <h1>BroadcastChannel API使用示例</h1>
+    <div id="result"></div>
+    <input type="text" id="msg" />
+    <input type="button" value="发送消息" onclick="sendMsg()" />
+</body>
+<script type="text/javascript">
+    const testChannel = new BroadcastChannel('test');
+    testChannel.onmessage = function (e) {
+        if (e.data.cmd == "msg")
+            document.getElementById("result").innerHTML += "接收到消息：" +
+                e.data.message + "<br/>";
+    };
+    function sendMsg() {
+        testChannel.postMessage({
+            cmd: 'msg',
+            message: document.getElementById("msg").value
+        });
+    }
+</script>
+
+</html>
