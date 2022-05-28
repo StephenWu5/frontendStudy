@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>slotchange事件捕捉示例</title>
+</head>
+
+<body>
+    <div id="div">
+        <div slot="testDiv">初始示例文字</div>
+    </div>
+    <input type='button' onclick='test()' value='测试按钮' />
+    <script>
+        let root = document.getElementById('div').attachShadow({ mode: 'open' });
+        root.innerHTML = "<div><slot name='testDiv' id='testDiv'></slot></div>";
+        var slot = root.getElementById('testDiv');
+        slot.addEventListener('slotchange', function (e) {
+            console.log('light dom被改变!');
+        });
+        function test() {
+            let div = document.createElement("div");
+            div.slot = "testDiv";
+            div.innerHTML = "示例文字";
+            document.getElementById("div").appendChild(div);
+        }
+    </script>
+</body>
+
+</html>

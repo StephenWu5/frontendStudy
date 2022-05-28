@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>定义模板内容</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>第一行第一列</td>
+            <td style="text-align:center">第一行第二列</td>
+            <td>第一行第三列</td>
+        </tr>
+        <tr>
+            <td>第二行第一列</td>
+            <td id="td1">
+                <template id="mytemplate">
+                    <img id="img" src="./生活中的幸福.png" alt="我的图片">
+                    <div class="comment"></div>
+                </template>
+            </td>
+            <td>第二行第三列</td>
+        </tr>
+        <tr>
+            <td>第三行第一列</td>
+            <td style="text-align:center">第三行第二列</td>
+            <td>第三行第三列</td>
+        </tr>
+    </table>
+</body>
+<script>
+    // 意 的 是 ; 模 板 不 可 能 被 预 温 染 , 这 意 味 着 你 不 能 预 执 行 任 何 代
+    // 码 片 段 , 不 能 预 加 载 视 频 、 音 频 等 。 任 何 代 码 都 将 在 模 板 被 调
+    setTimeout(() => {
+        let content = document.getElementById('mytemplate').content;
+        //指定img元素的src属性值
+        content.getElementById('img').src = './2022-04-24_21-17.png';
+        document.getElementById("td1").appendChild(content.cloneNode(true));
+    }, 800)
+</script>
+
+</html>

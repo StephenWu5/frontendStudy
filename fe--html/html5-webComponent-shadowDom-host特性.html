@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>在Shadow DOM中定义CSS样式</title>
+</head>
+<style>
+    h3 {
+        color: chartreuse;
+    }
+</style>
+
+<body class="darktheme">
+    <div>
+        <h3>实际运行示例:</h3>
+    </div>
+    <div id="div2">
+        <h3>Host标题</h3>
+    </div>
+    <script>
+        let root = document.getElementById('div2').attachShadow({ mode: 'open' });
+        // root.innerHTML = '<style>h3{ color: red; }</style><h3>Shadow DOM标题</h3>';
+        // 修改宿主元素的样式
+        // root.innerHTML = '<style>:host{background-color:pink;} h3{ color: red; }</style > <h3>Shadow DOM标题</h3>';
+        // host选择器
+        // root.innerHTML = '<style>:host{background-color:pink;} :host(:hover){background-color:yellow;} h3{ color: red; }</style><h3>Shadow DOM标题</h3>';
+        // host-context 进行主题化
+        root.innerHTML = '<style>:host-context(.darktheme){color: white; background: black;}</style > <h3>Shadow DOM标题</h3>';
+    </script>
+</body>
+
+</html>

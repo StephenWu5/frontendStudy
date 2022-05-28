@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>使用元素名称为组件设定样式</title>
+    <style>
+        div {
+            background-color: blue;
+            color: red;
+            /*注意:继承的CSS属性可跨越shadow DOM边界*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="host"></div>
+    <script>
+        let root = document.getElementById('host').attachShadow({ mode: 'open' });
+        // root.innerHTML = '<div>示例文字</div>';
+        // root.innerHTML = '<style>div{color:white;background-color: black;}</style><div>示例文字</div>';
+        // 则 在 浏 览 器 中 div 文 字 颜 色 将 仍 为 红 色 。 因 为 使 用 : host 选 择 器 相
+        // 当 于 “ 替 用 尸 从 页 面 中 定 义 宿 主 元 素 的 样 式 “, 而 非 定 义 组 件 内 部 样式 。
+        root.innerHTML = '<style>:host{color:white;}</style><div>示例文字</div>';
+    </script>
+</body>
+
+</html>
