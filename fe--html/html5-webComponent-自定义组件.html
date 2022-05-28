@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>自定义新的HTML元素</title>
+    <style>
+        app-drawer {
+            background-color: blue;
+            color: white;
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <!-- <script>
+        class AppDrawer extends HTMLElement {
+        }
+        window.customElements.define('app-drawer', AppDrawer);
+    </script> -->
+    <script>
+        // 匿名类定义
+        window.customElements.define('app-drawer', class extends HTMLElement { });
+    </script>
+</head>
+
+<body>
+    <app-drawer>自定义元素示例</app-drawer>
+</body>
+
+</html>

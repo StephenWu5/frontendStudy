@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>访问导入文档中的内容</title>
+    <link rel="import" href="./html5-html导入1.html">
+</head>
+
+<body>
+</body>
+<script>
+    let content = document.querySelector('link[rel="import"]').import;
+    console.log(content, '9999');
+    //从导入文档中获取元素
+    let el = content.querySelector(".warning");
+    document.body.appendChild(el.cloneNode(true));
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>在自定义元素中使用Shadow DOM</title>
+    <style>
+        p{
+            color: pink;
+        }
+        b {
+            color: blueviolet;
+        }
+        x-foo-shadowdom {
+            color:aquamarine;
+        }
+    </style>
+    <script>
+        window.customElements.define('x-foo-shadowdom', class extends HTMLElement {
+            constructor() {
+                super(); //在构造函数中总是先调用super()
+                //为元素附加一个影子根
+                let shadowRoot = this.attachShadow({ mode: 'open' });
+                // shadowRoot.innerHTML = '<style>p{color:white;}</style><b>我来自于组件内部!</b><slot></slot><x-foo-shadowdom></x-foo-shadowdom>';
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <x-foo-shadowdom>
+        <p><b>用户的</b>自定义文字</p>
+    </x-foo-shadowdom>
+</body>
+
+</html>

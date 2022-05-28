@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>为自定义元素添加禁用属性</title>
+    <style>
+        app-drawer {
+            background-color: blue;
+            color: white;
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+
+        app-drawer[disabled] {
+            background-color: gray;
+        }
+    </style>
+    <script>
+        class AppDrawer extends HTMLElement {
+            //一个针对open属性的getter/setter
+            get open() {
+                return this.hasAttribute('open');
+            }
+
+            set open(val) {
+                //为元素添加open属性
+                if (val) {
+                    this.setAttribute('open', '');
+                } else {
+                    this.removeAttribute('open');
+                }
+                this.toggleDrawer();
+            }
+
+            //一个针对disabled属性的getter/setter
+            get disabled() {
+                return this.hasAttribute('disabled');
+            }
+
+            set disabled(val) {
+                //为元素添加disabled属性
+                if (val) {
+                    this.setAttribute('disabled', '');
+                } else {
+                    this.removeAttribute('disabled');
+                }
+            }
+
+            //可以定义构造器函数
+            constructor() {
+                //定义构造器函数时总是首先调用super()!
+                super();
+                //对<app-drawer>设置一个click监听器.
+                this.addEventListener('click', e => {
+                    //如果禁用则返回
+                    if (this.disabled) {
+                        return;
+                    }
+                    this.toggleDrawer();
+                });
+            }
+
+            toggleDrawer() {
+                if (!this.open) {
+                    this.innerHTML = "抽屉被打开";
+                    this.setAttribute('open', '');
+                }
+                else {
+                    this.innerHTML = "抽屉被关闭";
+                    this.removeAttribute('open');
+                }
+            }
+        }
+
+        customElements.define('app-drawer', AppDrawer);
+    </script>
+</head>
+
+<body>
+    <app-drawer>抽屉被关闭</app-drawer>
+    <input type="button" value="禁用元素" onclick="disableElem()" />
+    <script>
+        function disableElem() {
+            document.querySelector("app-drawer").setAttribute("disabled", "");
+        }
+    </script>
+</body>
+
+</html>

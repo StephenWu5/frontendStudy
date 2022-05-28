@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>使用模板创建元素</title>
+</head>
+
+<body>
+    <x-foo-shadowdom>
+        <p><b>用户的</b>自定义文字</p>
+    </x-foo-shadowdom>
+    <template id="x-foo-from-template">
+        <style>
+            p {
+                color: orange;
+            }
+        </style>
+        <p>我在Shadow DOM内，也在模板内</p>
+        <slot></slot>
+    </template>
+</body>
+<script>
+    window.customElements.define('x-foo-shadowdom', class extends HTMLElement {
+        constructor() {
+            super(); //在构造函数中总是先调用super()
+            //为元素附加一个影子根
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            let t = document.getElementById('x-foo-from-template');
+            let instance = t.content.cloneNode(true);
+            shadowRoot.appendChild(instance);
+        }
+    });
+</script>
+
+</html>
