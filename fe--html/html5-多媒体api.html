@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h6>视频播放器</h6>
-    <video src="../../../02video/瑜伽/极致瑜伽全六季/极致瑜伽.第1季.无台标.1080p/极致瑜伽 第一季 01.了解身体.mp4" autoplay controls width="500" height="300"></video>
+    <!-- ../assets/test.mp4 -->
+    <video id="video" autoplay poster="./生活中的幸福.png" loop preload="auto" controls width="500" height="300">
+        <source src="./yoga.mp4" type="video/mp4">
+        <track label="中文字幕" kind="subtitles" chapters metadata srclang="zh" src="./caption.vtt" default>
+    </video>
+    <h6>networkState</h6>
+    <div id="networkState"></div>
 </body>
+<script>
+    var video = document.querySelector('#video');
+    video.playbackRate = 1; //控制播放速度 0~很多
+    video.volume = 1; //控制播放速度 0~1
+    var support = video.canPlayType('ogg/mp4');
+    console.log(support, 'support');
+    console.log(video.src, video.readyState, video.buffered, video.seeking, '***currentSrc');
+    video.addEventListener("error", function () {
+        var error = video.error;
+        switch (error.code) {
+            case 1:
+                alert("视频的下载过程被中止。");
+                break;
+            case 2:
+                alert("网络发生故障，视频的下载过程被中止。");
+                break;
+            case 3:
+                alert("解码失败。");
+                break;
+            case 4:
+                alert("媒体资源不可用或媒体格式不被支持。");
+                break;
+        }
+    }, false);
+    // video.addEventListener("progress", function (e) {
+    video.addEventListener("timeupdate", function (e) {
+        var networkStateDisplay =
+            document.getElementById("networkState");
+        console.log(video.currentTime, video.duration, 'currentTime');
+        // 根据networkState属性的值执行处理
+        if (video.networkState == 2) {
+            // 计算已加载的字节数与总字节数
+            networkStateDisplay.innerHTML = "加载中...["
+                + e.loaded + " / " + e.total + " byte]";
+        }
+        else if (video.networkState == 3) {
+            networkStateDisplay.innerHTML = "加载失败";
+        }
+    }, false);
+</script>
+
+</script>
+
 </html>
