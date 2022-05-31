@@ -5,7 +5,7 @@
 
 <body onload="draw('canvas');">
     <h1>canvas元素示例</h1>
-    <canvas width="400" height="300" id='canvas'/>
+    <canvas width="400" height="300" id='canvas' />
 </body>
 <script>
     function draw(id) {
@@ -13,15 +13,14 @@
         if (canvas == null)
             return false;
         var context = canvas.getContext('2d');
-        console.log(canvas, context, 'canvas');
         context.fillStyle = "#EEEEFF";
         context.fillRect(0, 0, 400, 300);
-        context.fillStyle = "red";
-        // 指定线宽
-        context.lineWidth = 1;
-        context.fillRect(50, 50, 100, 100);
-        context.strokeStyle = "blue";
-        context.strokeRect(50, 50, 100, 100);
+        var n = 0;
+        for (var i = 0; i < 10; i++) {
+            context.arc(i * 25, i * 25, i * 10, 0, Math.PI * 2, true);
+            context.fillStyle = 'rgba(255, 0, 0, 0.25)';
+            context.fill();
+        }
     }
 </script>
 
