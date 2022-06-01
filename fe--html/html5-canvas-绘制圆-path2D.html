@@ -1,0 +1,63 @@
+<head>
+    <meta charset="UTF-8">
+    <title>canvas元素示例</title>
+</head>
+
+<body onload="draw('canvas');">
+    <h1>canvas元素示例</h1>
+    <canvas width="400" height="300" id='canvas' />
+</body>
+<script>
+    // function draw(id) {
+    //     var canvas = document.getElementById(id);
+    //     if (canvas == null)
+    //         return false;
+    //     var context = canvas.getContext('2d');
+    //     context.fillStyle = "#EEEEFF";
+    //     context.fillRect(0, 0, 400, 300);
+    //     var n = 0;
+    //     for (var i = 0; i < 10; i++) {
+    //         var path = new Path2D();
+    //         path.arc(i * 25, i * 25, i * 10, 0, Math.PI * 2, true);
+    //         path.closePath();
+    //         context.fillStyle = 'rgba(255, 0, 0, 0.25)';
+    //         context.fill(path);
+    //     }
+    // }
+    // function draw(id) {
+    //     var canvas = document.getElementById(id);
+    //     if (canvas == null)
+    //         return false;
+    //     var context = canvas.getContext('2d');
+    //     var path1 = new Path2D();
+    //     path1.rect(10, 10, 100, 100);
+    //     var path2 = new Path2D(path1);
+    //     path2.moveTo(220, 60);
+    //     path2.arc(170, 60, 50, 0, 2 * Math.PI);
+    //     context.stroke(path2);
+    // }
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        var path1 = new Path2D();
+        path1.rect(10, 10, 100, 100);
+        var path2 = new Path2D();
+        path2.moveTo(220, 60);
+        path2.arc(170, 60, 50, 0, 2 * Math.PI);
+        path2.addPath(path1);
+        context.stroke(path2);
+    }
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        console.log(context, 'context');
+        var path1 = new Path2D("M10 10 h 80 v 80 h -80 Z ");
+        context.fill(path1);
+    }
+</script>
+
+</html>
