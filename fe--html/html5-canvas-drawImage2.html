@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>使用toBlob方法转换canvas元素</title>
+</head>
+
+<body onload="draw('canvas');">
+    <h1>使用toBlob方法转换canvas元素</h1>
+    <canvas width="400" height="300" id="canvas"></canvas>
+    <br />
+    <input type="button" value="保存图像" onclick="savePicture();">
+    <script>
+        function draw(id) {
+            canvas = document.getElementById(id);
+            if (canvas == null)
+                return false;
+            let context = canvas.getContext('2d');
+            context.fillStyle = "rgb(0, 0, 255)";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.fillStyle = "rgb(255, 255, 0)";
+            context.fillRect(10, 20, 50, 50);
+        }
+        function savePicture() {
+            function onBlob(blob) {
+                let a = document.createElement('a');
+                a.textContent = '打开图像';
+                document.body.appendChild(a);
+                a.style.display = 'block';
+                console.log(blob, 'blob');
+                a.href = window.URL.createObjectURL(blob);
+            }
+            canvas.toBlob(onBlob, 'image/jpeg', 0.95);
+        }
+
+        // 动画效果
+        var context;
+        var width, height;
+        var i;
+        function draw(id) {
+            var canvas = document.getElementById(id);
+            if (canvas == null)
+                return false;
+            context = canvas.getContext('2d');
+            width = canvas.width;
+            height = canvas.height;
+            i = 0;
+            setInterval(rotate, 100);      // 十分之一秒
+        }
+        function rotate() {
+            context.clearRect(0, 0, width, height);
+            context.fillStyle = "red";
+            context.fillRect(i, 0, 20, 20);
+            i = i + 20;
+        }
+
+        // 动态显示 globalCompositeOperation 的特点
+        var globalId;
+        var i = 0;
+        function draw(id) {
+            globalId = id;
+            setInterval(Composite, 1000);
+        }
+        function Composite() {
+            var canvas = document.getElementById(globalId);
+            if (canvas == null)
+                return false;
+            var context = canvas.getContext('2d');
+            var oprtns = new Array(
+                "source-atop",
+                "source-in",
+                "source-out",
+                "source-over",
+                "destination-atop",
+                "destination-in",
+                "destination-out",
+                "destination-over",
+                "lighter",
+                "copy",
+                "xor"
+            );
+            if (i > 10) i = 0;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.save();
+            // 绘制原有图形(蓝色长方形)
+            context.fillStyle = "blue";
+            context.fillRect(10, 10, 60, 60);
+            // 设置组合方式 
+            context.globalCompositeOperation = oprtns[i];
+            // 设置新图形(红色圆形)
+            context.beginPath();
+            context.fillStyle = "red";
+            context.arc(60, 60, 30, 0, Math.PI * 2, false);
+            context.fill();
+            context.restore();
+            i = i + 1;
+        }
+
+        function draw(id) {
+            let canvas = document.getElementById(id);
+            let context = canvas.getContext("2d");
+            let worker = new Worker("./html5-canvas-drawImage2-worker.js");
+            worker.postMessage('./生活中的幸福.png');
+            worker.onmessage = (evt) => {
+                if (evt.data.err)
+                    console.log(evt.data.message);
+                context.drawImage(evt.data.imageBitmap, 0, 0);
+            };
+        }
+    </script>
+</body>
+
+</html>

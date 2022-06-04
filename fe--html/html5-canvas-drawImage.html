@@ -1,0 +1,294 @@
+<head>
+    <meta charset="UTF-8">
+    <title>canvas元素示例</title>
+</head>
+
+<body onload="draw('canvas');">
+    <h1>canvas元素示例</h1>
+    <canvas width="400" height="300" id='canvas' />
+</body>
+<script>
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        context.fillStyle = "#EEEEFF";
+        context.fillRect(0, 0, 400, 300);
+        image = new Image();
+        image.src = "./生活中的幸福.png";
+        image.onload = function () {
+            console.log(image, 'image');
+            drawImg(context, image);
+        };
+        // console.log(image.src, 'image')
+    }
+    function drawImg(context, image) {
+        for (var i = 0; i < 7; i++)
+            context.drawImage(image, 0 + i * 50, 0 + i * 25, 100, 100);
+    }
+    // 
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        context.fillStyle = "#EEEEFF";
+        context.fillRect(0, 0, 400, 300);
+        image = new Image();
+        image.src = "./生活中的幸福.png";
+        image.onload = function () {
+            drawImg(context, image);
+        };
+    }
+    function drawImg(context, image) {
+        var i = 0;
+        // 首先调用该方法绘制原始图像
+        context.drawImage(image, 0, 0, 100, 100);
+        // 绘制将局部区域进行放大后的图像
+        context.drawImage(image, 23, 5, 57, 80, 110, 0, 100, 100);
+    }
+    // 页面平铺效果🦐
+    function draw(id) {
+        var image = new Image();
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        image.src = "./生活中的幸福.png";
+        image.onload = function () {
+            drawImg(canvas, context, image);
+        };
+    }
+    function drawImg(canvas, context, image) {
+        // 平铺比例
+        var scale = 5
+        // 缩小后图像宽度
+        var n1 = image.width / scale;
+        // 缩小后图像高度
+        var n2 = image.height / scale;
+        // 平铺横向个数
+        var n3 = canvas.width / n1;
+        // 平铺纵向个数
+        var n4 = canvas.height / n2;
+        for (var i = 0; i < n3; i++)
+            for (var j = 0; j < n4; j++)
+                context.drawImage(image, i * n1, j * n2, n1, n2);
+    }
+    function draw(id) {
+        var image = new Image();
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        image.src = "./生活中的幸福.png";
+        image.onload = function () {
+            // 创建填充样式，全方向平铺
+            var ptrn = context.createPattern(image, 'repeat');
+            console.log(ptrn, 'ptrn');
+            // 指定填充样式
+            context.fillStyle = ptrn;
+            // 填充画布
+            context.fillRect(0, 0, 400, 300);
+        };
+    }
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        var gr = context.createLinearGradient(0, 400, 300, 0);
+        gr.addColorStop(0, 'rgb(255,255,0)');
+        gr.addColorStop(1, 'rgb(0,255,255)');
+        context.fillStyle = gr;
+        context.fillRect(0, 0, 400, 300);
+        image = new Image();
+        image.onload = function () {
+            drawImg(context, image);
+        };
+        image.src = "./生活中的幸福.png";
+    }
+
+    function drawImg(context, image) {
+        create5StarClip(context);
+        context.drawImage(image, -50, -150, 300, 300);
+        imagedata = context.getImageData(0, 0, image.width, image.height);
+        console.log(imagedata, 'imagedata');
+    }
+
+    function create5StarClip(context) {
+        var n = 0;
+        var dx = 100;
+        var dy = 0;
+        var s = 150;
+        context.beginPath();
+        context.translate(100, 150);
+        var x = Math.sin(0);
+        var y = Math.cos(0);
+        var dig = Math.PI / 5 * 4;
+        for (var i = 0; i < 5; i++) {
+            var x = Math.sin(i * dig);
+            var y = Math.cos(i * dig);
+            context.lineTo(dx + x * s, dy + y * s);
+        }
+        context.clip();
+    }
+    function draw(id) {
+        let canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        let context = canvas.getContext('2d');
+        let image = new Image();
+        image.src = "./生活中的幸福.png";
+        image.onload = function () {
+            context.drawImage(image, 0, 0);
+            let imagedata = context.getImageData(0, 0, image.width, image.height);
+            console.log(imagedata, 'imagedata');
+            for (var i = 0, n = imagedata.data.length; i < n; i += 4) {
+                imagedata.data[i + 0] = 255 - imagedata.data[i + 0]; // red
+                imagedata.data[i + 1] = 255 - imagedata.data[i + 1]; // green
+                imagedata.data[i + 2] = 255 - imagedata.data[i + 2]; // blue
+            }
+            context.putImageData(imagedata, 0, 0);
+        };
+    }
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        var oprtns = new Array(
+            "source-atop",
+            "source-in",
+            "source-out",
+            "source-over",
+            "destination-atop",
+            "destination-in",
+            "destination-out",
+            "destination-over",
+            "lighter",
+            "copy",
+            "xor"
+        );
+        i = 8;   // 读者可自行修改该参数来显示想要查看的组合效果
+        // 绘制原有图形(蓝色长方形)
+        context.fillStyle = "blue";
+        context.fillRect(10, 10, 60, 60);
+        /*设置组合方式,从组合的参数数组中挑选组合方式,此处因为i是8,
+        所以选择oprtns数组中第9(数组从0开始计算)个组合方式lighter*/
+        // context.globalCompositeOperation = oprtns[i];
+        // 设置新图形(红色圆形)
+        context.beginPath();
+        context.fillStyle = "red";
+        context.arc(60, 60, 30, 0, Math.PI * 2, false);
+        context.fill();
+    }
+
+
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        var oprtns = new Array(
+            "source-atop",
+            "source-in",
+            "source-out",
+            "source-over",
+            "destination-atop",
+            "destination-in",
+            "destination-out",
+            "destination-over",
+            "lighter",
+            "copy",
+            "xor"
+        );
+        i = 8;   // 读者可自行修改该参数来显示想要查看的组合效果
+        // 绘制原有图形(蓝色长方形)
+        context.fillStyle = "blue";
+        context.fillRect(10, 10, 60, 60);
+        /*设置组合方式,从组合的参数数组中挑选组合方式,此处因为i是8,
+        所以选择oprtns数组中第9(数组从0开始计算)个组合方式lighter*/
+        context.globalCompositeOperation = oprtns[i];
+        // 设置新图形(红色圆形)
+        context.beginPath();
+        context.fillStyle = "red";
+        context.arc(60, 60, 30, 0, Math.PI * 2, false);
+        context.fill();
+    }
+
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        context.globalCompositeOperation = "darken";
+        var image = new Image();
+        image.src = "./生活中的幸福.png";
+        image.onload = function () {
+            context.drawImage(image, 0, 0);
+            var image2 = new Image();
+            image2.src = "person.jpg";
+            image2.onload = function () {
+                context.drawImage(image2, 0, 0);
+            };
+        };
+    }
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        context.fillStyle = '#00f';
+        context.font = 'italic 30px sans-serif';
+        context.textBaseline = 'top';
+        // 填充字符串
+        context.fillText('示例文字', 0, 0);
+        context.font = 'bold  30px sans-serif';
+        // 轮廓字符串
+        context.strokeText('示例文字', 0, 50);
+    }
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        context.font = 'italic 20px sans-serif';
+        /* 定义绘制文字*/
+        var txt = "字符串的宽度为";
+        /* 获取文字宽度 */
+        var tm1 = context.measureText(txt);
+        console.log(tm1, 'tm1');
+        /* 绘制文字 */
+        context.fillText(txt, 10, 30);
+        context.fillText(tm1.width, tm1.width + 10, 30);
+        /* 改变字体 */
+        context.font = "bold  30px sans-serif";
+        /* 重新获取文字宽度 */
+        var tm2 = context.measureText(txt);
+        /* 重新绘制文字*/
+        context.fillText(txt, 10, 70);
+        context.fillText(tm2.width, tm2.width + 10, 70);
+    }
+    function draw(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null)
+            return false;
+        var context = canvas.getContext('2d');
+        context.fillStyle = "rgb(0, 0, 255)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = "rgb(255, 255, 0)";
+        context.fillRect(10, 20, 50, 50);
+        // 这种方式不允许
+        // window.location = canvas.toDataURL("image/jpeg");
+        base64Data = canvas.toDataURL("image/jpeg");
+        // 这是允许的利用iframe的src属性
+        var iframe = "<iframe width='100%' height='100%' src='" + base64Data + "'></iframe>";
+        var x = window.open();
+        x.document.open();
+        x.document.write(iframe);
+        x.document.close();
+    }
+</script>
+
+</html>
