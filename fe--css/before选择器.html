@@ -1,0 +1,72 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title> before选择器的使用示例</title>
+</head>
+<style type="text/css">
+    h2:before {
+        content: 'COLUMN';
+        color: white;
+        background-color: orange;
+        font-family: 'Comic Sans MS', Helvetica, sans-serif;
+        padding: 1px 5px;
+        margin-right: 10px;
+    }
+
+    h2:before {
+        content: url(./生活中的幸福.png);
+    }
+
+    h2.sample:before {
+        /* content: none */
+        /* normal和none的作用一样 */
+        content: normal
+    }
+
+    h1.new:after {
+        content: url(./border.png);
+    }
+
+    h1.head01:before {
+        content: url(./border.png);
+    }
+
+    h1.head02 {
+        background-image: url(./border.png);
+        background-repeat: no-repeat;
+        padding-left: 28px;
+    }
+
+    img:after {
+        content: attr(alt);
+        display: block;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    /* 添加序号 */
+    h1:before {
+        content: '第' counter(mycounter, upper-alpha)'.次';
+        color: blue;
+        font-size: 42px;
+    }
+
+    h1 {
+        counter-increment: mycounter;
+    }
+</style>
+
+<body>
+    <h2>标题文字</h2>
+    <h2 class="sample">标题2</h2>
+    <h1 class="new">标题A</h1>
+    <h1 class="new">标题B</h1>
+    <h1 class="head01">标题A</h1>
+    <h1 class="head02">标题B</h1>
+    <p><img src="./border.png" alt="蓝天白云" /></p>
+</body>
+
+</html>
