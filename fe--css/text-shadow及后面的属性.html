@@ -1,0 +1,44 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>text-shadow属性的使用示例</title>
+</head>
+<style type="text/css">
+    div {
+        text-shadow: 5px 5px 5px gray, 40px 35px 5px #fff100, 70px 60px 5px #c0ff00;
+        color: navy;
+        font-size: 50px;
+        font-weight: bold;
+        font-family: 宋体;
+    }
+
+    p {
+        word-break: break-all;
+        word-wrap: break-word;
+        width: 11em;
+        border: 1px solid #000000;
+    }
+
+    div.test {
+        padding: 10px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        background: #eee;
+    }
+</style>
+
+<body>
+    <div>你好</div>
+    <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好hellohellohellohellohellohellohellohellohellohellohellohellohellohello
+    </p>
+    <p class="test"> This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word
+        will break and wrap to the next line.</p>
+    <div class="test">用户不得选取这段文字</div>
+</body>
+
+</html>
