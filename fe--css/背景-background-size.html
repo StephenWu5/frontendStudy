@@ -1,0 +1,34 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>background-size属性的使用示例</title>
+</head>
+<style type="text/css">
+    div {
+        background-color: black;
+        background-image: url('./生活中的幸福.png');
+        padding: 30px;
+        color: white;
+        font-size: 2em;
+        font-weight: bold;
+        /* 如果要维持图形比例，那把其中一个值设置为auto */
+        background-size: 400px 200px;
+        background-size: auto 200px;
+        background-size: 200px;
+        background-size: 50% 50%;
+        background-size: contain; 
+        /* background-size: over;
+        background-repeat: no-repeat; */
+        background-repeat: space;
+        background-repeat: round;
+    }
+</style>
+
+<body>
+    <div>示例文字</div><br>
+</body>
+
+</html>
