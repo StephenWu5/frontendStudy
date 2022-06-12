@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>使用CSS 3动画的版本</title>
+    <style>
+        #redball {
+            background: red;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+        }
+
+        @keyframes moveBall {
+            from {
+                transform: translateX(0px) translateY(0px);
+            }
+
+            20% {
+                transform: translateX(300px) translateY(0px);
+            }
+
+            100% {
+                transform: translateX(300px) translateY(300px);
+            }
+        }
+
+        #redball {
+            animation: moveBall 3s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="redball"></div>
+</body>
+
+</html>

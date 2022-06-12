@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>使用Web Animations API的版本</title>
+    <style>
+        #redball {
+            background: red;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="redball"></div>
+    <script>
+        console.log(document.getElementById('redball'), '9999');
+        document.getElementById('redball').animate([{
+            transform: 'translateX(0px) translateY(0px)'
+        }, {
+            transform: 'translateX(300px) translateY(0px)',
+            offset: 0.2
+        }, {
+            transform: 'translateX(300px) translateY(300px)'
+        }], {
+            duration: 3000,
+            iterations: Infinity,
+            easing: 'ease'
+        });
+    </script>
+</body>
+
+</html>

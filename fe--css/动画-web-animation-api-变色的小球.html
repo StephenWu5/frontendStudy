@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>小球在运动过程中不断随机地修改颜色</title>
+    <style>
+        #redball {
+            background: red;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="redball"></div>
+    <script>
+        let color1, color2, color3;
+        function getRandomColor() {
+            return "#" + ("00000" + ((Math.random() * 16777215 + 0.5) >> 0).toString(16))
+                .slice(-6);
+        }
+        moveBall();
+        setInterval(function () {
+            moveBall();//移动小球
+        }, 3000);
+        function moveBall() {
+            let color1 = getRandomColor();                //设置颜色变量并赋予随机颜色值
+            let color2 = getRandomColor();                //设置颜色变量并赋予随机颜色值
+            let color3 = getRandomColor();                //设置颜色变量并赋予随机颜色值
+            document.getElementById('redball').animate([{
+                transform: 'translateX(0px) translateY(0px)',
+                background: 'red'
+            }, {
+                transform: 'translateX(300px) translateY(0px)',
+                background: color1,
+                offset: 0.25
+            }, {
+                transform: 'translateX(300px) translateY(300px)',
+                background: color2,
+                offset: 0.5
+            }, {
+                transform: 'translateX(0px) translateY(300px)',
+                background: color3,
+                offset: 0.75
+            }, {
+                transform: 'translateX(0px) translateY(0px)',
+                background: 'red'
+            }], {
+                duration: 3000,
+                easing: 'ease'
+            });
+        }
+    </script>
+</body>
+
+</html>

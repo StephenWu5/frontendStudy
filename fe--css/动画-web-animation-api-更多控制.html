@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>对动画播放进行更多控制</title>
+    <style>
+        #redball {
+            background: red;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="redball"></div><br />
+    <input type="button" id="btnCancel" value="放弃播放" />
+    <input type="button" id="btnReverse" value="回放" />
+    <input type="button" id="btnSpeedUp" value="加速播放" />
+    <input type="button" id="btnSpeedDown" value="减速播放" />
+    <script>
+        let animate = document.getElementById('redball').animate([{
+            transform: 'translateX(0px) translateY(0px)'
+        }, {
+            transform: 'translateX(300px) translateY(0px)',
+            offset: 0.2
+        }, {
+            transform: 'translateX(300px) translateY(300px)'
+        }], {
+            duration: 30000,
+            iterations: Infinity,
+            easing: 'ease'
+        });
+        console.log(animate);
+        document.getElementById('redball').addEventListener("mouseenter",
+            function () {
+                animate.pause();
+            }, false);
+        document.getElementById('redball').addEventListener("mouseleave",
+            function () {
+                animate.play();
+            }, false);
+        document.getElementById('btnCancel').addEventListener("click",
+            function () {
+                animate.cancel();
+            }, false);
+        document.getElementById('btnReverse').addEventListener("click",
+            function btnReverse() {
+                animate.reverse();
+            });
+        document.getElementById('btnSpeedUp').addEventListener("click",
+            function btnSpeedUp() {
+                animate.playbackRate *= 2;
+                console.log(animate.playbackRate, 'playbackRate');
+            });
+        document.getElementById('btnSpeedDown').addEventListener("click",
+            function btnSpeedDown() {
+                animate.playbackRate /= 2;
+                console.log(animate.playbackRate, 'playbackRate');
+            });
+    </script>
+</body>
+
+</html>
