@@ -1,0 +1,67 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+    <title>网格布局示例</title>
+    <style type="text/css">
+        .container {
+            display: grid;
+            width: 100%;
+            height: 600px;
+            grid-gap: 1rem;
+            grid-template-columns:
+                [main-start sidebar-start] 200px [sidebar-end content-start] 1fr [column3-start] 1fr [content-end main-end];
+            grid-template-rows:
+                [row1-start] 80px [row2-start] 1fr [row3-start] 1fr [row4-start] 100px [row4-end];
+        }
+
+        .header {
+            grid-column: main-start / main-end;
+            grid-row: row1-start / row2-start;
+        }
+
+        .sidebar {
+            grid-column: sidebar-start /  sidebar-end;
+            grid-row: row2-start / row4-start;
+        }
+
+        .content1 {
+            grid-column: content-start / content-end;
+            grid-row: row2-start / row3-start;
+        }
+
+        .content2 {
+            grid-column: content-start / column3-start;
+            grid-row: row3-start / row4-start;
+        }
+
+        .content3 {
+            grid-column: column3-start / content-end;
+            grid-row: row3-start / row4-start;
+        }
+
+        .footer {
+            grid-column: main-start / main-end;
+            grid-row: row4-start / row4-end;
+        }
+
+        .container div {
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">网页头部</div>
+        <div class="sidebar">侧边栏</div>
+        <div class="content1">内容一</div>
+        <div class="content2">内容二</div>
+        <div class="content3">内容三</div>
+        <div class="footer">footer</div>
+    </div>
+</body>
+
+</html>

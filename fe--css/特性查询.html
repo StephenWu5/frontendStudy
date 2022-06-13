@@ -1,0 +1,38 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=600px" />
+    <!-- 导入也支持媒体查询 -->
+    <!-- @import url(color.css) screen and (min-width: 1000px);
+<link rel="stylesheet" type="text/css" media="screen and (min-width: 1000px)" href="style.css" /> -->
+    <title>根据不同的窗口尺寸来选择使用不同的样式的示例</title>
+    <style>
+        @supports (border-radius: 5px) {
+            aside {
+                border: 1px solid black;
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="wrapper">
+            <p id="main">
+                MAIN
+            </p>
+            <p id="sub01">
+                SUB 01
+            </p>
+        </div>
+        <p id="sub02">
+            SUB 02
+        </p>
+    </div>
+</body>
+
+</html>
