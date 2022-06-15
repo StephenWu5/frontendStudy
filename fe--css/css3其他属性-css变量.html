@@ -1,0 +1,54 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+    <title>在不同级别中定义同一个CSS变量</title>
+    <style>
+        :root {
+            --color: blue;
+        }
+
+        div {
+            --color: green;
+        }
+
+        #alert {
+            --color: red;
+        }
+
+        * {
+            color: var(--color);
+        }
+
+        /* 和媒体查询配合起来 */
+        :root {
+            --gutter: 4px;
+        }
+
+        section {
+            margin: var(--gutter);
+        }
+
+        @media (min-width: 600px) {
+            :root {
+                --gutter: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p>我继承根元素的蓝色!</p>
+    <div>我直接被定义成绿色!</div>
+    <div id="alert">
+        我直接被定义成红色!
+        <p>因为继承，我也是红色!</p>
+    </div>
+    <section>
+        我是一个section
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>为元素样式代码使用替代值</title>
+    <style>
+        .component {
+            --text-color: red;
+            /* header-color未设置，还是蓝色,替代值 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <template id="template">
+        <style>
+            .component .header {
+                color: var(--header-color, blue);
+            }
+
+            .component .text {
+                color: var(--text-color, black);
+            }
+        </style>
+        <div class="component">
+            <h1 class="header">标题</h1>
+            <p class="text">正文</p>
+        </div>
+    </template>
+</body>
+<script>
+    let content = document.getElementById('template').content;
+    document.getElementById('container').appendChild(content.cloneNode(true));
+</script>
+
+</html>

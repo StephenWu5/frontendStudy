@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>在外部页面中为Web组件中的元素指定样式</title>
+    <style>
+        x-foo-shadowdom {
+            --text-background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <x-foo-shadowdom>
+        <p><b>用户的</b>自定义文字</p>
+    </x-foo-shadowdom>
+    <template id="x-foo-from-template">
+        <style>
+            p {
+                background-color: var(--text-background, blue);
+            }
+        </style>
+        <p>
+            由于外部页面中的样式定义，元素的背景色将为黄色，否则为蓝色。
+        </p>
+    </template>
+</body>
+<script>
+    window.customElements.define('x-foo-shadowdom', class extends HTMLElement {
+        constructor() {
+            super(); //在构造函数中总是先调用super()
+            //为元素附加一个影子根
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            let t = document.getElementById('x-foo-from-template');
+            let instance = t.content.cloneNode(true);
+            shadowRoot.appendChild(instance);
+        }
+    });
+</script>
+
+</html>

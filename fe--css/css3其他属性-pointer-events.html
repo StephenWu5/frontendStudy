@@ -1,0 +1,21 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>禁止用户打开链接</title>
+    <style>
+        a[href="http://example.com"] {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a href="https://developer.mozilla.org/">MDN</a></li>
+        <li><a href="http://example.com">一个不能点击的链接</a></li>
+    </ul>
+</body>
+
+</html>

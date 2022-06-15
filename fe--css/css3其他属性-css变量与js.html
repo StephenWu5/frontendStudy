@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>获取CSS变量值</title>
+    <style>
+        :root {
+            --primary-color: red;
+            --secondary-color: blue;
+        }
+
+        p {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <p>我是一段红色文字!</p>
+</body>
+<script>
+    var styles = getComputedStyle(document.documentElement);
+    var value = String(styles.getPropertyValue('--primary-color')).trim();
+    alert(value);
+
+    document.documentElement.style.setProperty('--primary-color', 'green');
+    document.documentElement.style.setProperty('--primary-color',
+        'var(--secondary-color)');
+</script>
+
+</html>
