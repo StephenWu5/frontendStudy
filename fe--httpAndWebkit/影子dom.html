@@ -1,0 +1,20 @@
+<html>
+
+<body>
+    <div id="div"></div>
+    <script type="text/javascript">
+        window.onload = function () {
+            var adiv = document.getElementById("div");
+            debugger;
+            var root = adiv.webkitCreateShadowRoot();
+            var shadowImg = document.createElement("img");
+            shadowImg.src = "apic.png";
+            root.appendChild(shadowImg);
+            var shadowDiv = document.createElement("div");
+            shadowDiv.innerHTML = "This is a div from shadow dom!";
+            root.appendChild(shadowDiv);
+        }
+    </script>
+</body>
+
+</html>

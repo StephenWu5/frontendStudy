@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        video,
+        div,
+        canvas {
+            -webkit-transform: rotateY(30deg) rotateX(-45deg);
+            /* < !--CSS 3D变换--> */
+        }
+    </style>
+</head>
+
+<body>
+
+    <video src="../assets/test.mp4"></video>
+    <!--HTML5 video-->
+    <div>
+        <canvas id="a2d"></canvas><br>
+        <!--HTML5 canvas-->
+        <canvas id="a3d"></canvas>
+        <!--HTML5 canvas-->
+    </div>
+    <script type="text/javascript">
+        var size = 300;
+
+        //canvas 2D绘图
+        var a2dCtx = document.getElementById('a2d').getContext('2d');
+        a2dCtx.canvas.width = size;
+        a2dCtx.canvas.height = size;
+        a2dCtx.fillStyle = "rgba(0,192,192,80)";
+        a2dCtx.fillRect(0, 0, 200, 200);
+
+        //canvas 3d, e.g. webGL绘图
+        var a3dCtx = document.getElementById('a3d').getContext('experimental-webgl');
+        a3dCtx.canvas.width = size;
+        a3dCtx.canvas.height = size;
+        a3dCtx.clearColor(0.0, 192.0 / 255.0, 192.0 / 255.0, 80.0 / 255.0);
+        a3dCtx.clear(a3dCtx.COLOR_BUFFER_BIT);
+    </script>
+</body>
+
+</html>

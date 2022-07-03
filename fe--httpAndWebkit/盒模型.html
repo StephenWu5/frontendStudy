@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #adiv
+        /*ID选择器*/
+            {
+            width: 300px;
+            /*宽度*/
+            background-color: #efefef;
+            /*背景色*/
+            border: 2px solid black;
+            /*边框*/
+            position: relative;
+            /* 使用最小高度让height不失去的问题 */
+            min-height: 300px;
+        }
+
+        .aclass
+        /*类选择器*/
+            {
+            /* position: absolute/fixed; 让元素脱离了文档流 */
+            position: absolute;
+            /* display: inline; */
+            border: 5px solid red;
+            /*边框*/
+            margin: 150px 100px 10px 40px;
+            /*外边距*/
+            padding: 15px 20px 25px 30px;
+            /*内边距*/
+            color: green;
+            /*颜色*/
+        }
+    </style>
+</head>
+
+<body>
+    <p>This is a test to demonstrate the mechanism of layout!</p>
+    <div id="adiv">
+        <div class="aclass">A B C D E F G H I J K L M N O P Q RS T</div>
+    </div>
+</body>
+
+    <script>
+        // cssom控制样式
+        // document.styleSheets[0].disabled = true;
+        console.log(document.styleSheets[0].cssRules[0], 'document.styleSheets[0].cssRules[0]');
+        document.styleSheets[0].cssRules[1].style.color = 'red';
+    </script>
+</html>

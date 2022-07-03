@@ -1,0 +1,36 @@
+<html>
+
+<body id="body">
+    <div id="div">
+        <img src="../assets/生活中的幸福.png" id="img"></img>
+    </div>
+    <script type="text/javascript">
+        function onBody(event) {
+            console.log("event capture in body.");
+            event.cancleBubble = true;//取消当前事件的冒泡
+        }
+        function onDiv(event) {
+            console.log(event,"event handled in div.");
+        }
+        function onImg(event) {
+            console.log("event handled in img.");
+            // 防止冒泡默认事件
+            // ie的做法
+            event.cancleBubble = true;//取消当前事件的冒泡
+            // 主流浏览器的做法
+            event.stopPropagation();
+        }
+        window.onload = function () {
+            // 事件传递机制是先捕获后冒泡
+            // addEventListener 第三个参数useCapture决定冒泡还是捕获，默认false是冒泡
+            var aimg = document.getElementById("img");
+            aimg.addEventListener("click", onImg);
+            var adiv = document.getElementById("div");
+            adiv.addEventListener("click", onDiv, false);
+            var abody = document.getElementById("body");
+            abody.addEventListener("click", onBody, false);
+        }
+    </script>
+</body>
+
+</html>
